@@ -2,12 +2,14 @@ import photo from '../assets/photo_2025-12-11_09-41-11.jpg';
 import Photo from '../assets/Photo.jpg';
 import goats from '../assets/goats.jpg';
 import White from '../assets/White.jpg';
+import DeliveryTruck from './DeliveryTruck';
 
 function Chicken() {
   return (
     <>
-      <div className="grid">
-        <div className="shadow-lg shadow-gray-500 rounded-xl p-4 ">
+      <DeliveryTruck />
+      <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-10 md:gap-20 px-5 md:px-0 max-w-6xl w-full mx-auto my-10 shadow-lg shadow-gray-500 mx-4 ">
+        <div className="rounded-xl p-4 ">
           <img
             src={photo}
             alt=""
@@ -33,7 +35,7 @@ function Chicken() {
           </ul>
         </div>
 
-        <div className="shadow-lg shadow-gray-500 rounded-xl p-4 ">
+        <div className="rounded-xl p-4 ">
           <img
             src={Photo}
             alt=""
@@ -58,24 +60,28 @@ function Chicken() {
           </ul>
         </div>
 
-        <div className="shadow-lg py-4 my-10 shadow-gray-500 rounded-xl p-4 text-center mx-auto">
-          <h1 className="text-lg text-green-600 font-bold py-10">
-            Kalahari Hybrid Goat
-          </h1>
+        <div className="flex sm:flex-col md:flex-row max-w-xl gap-5 shadow-lg py-4 my-10 shadow-gray-500 rounded-xl p-4 text-center mx-auto">
+          <div className='space-y-5'>
+            <h1 className="text-lg text-green-600 font-bold">
+              Kalahari Hybrid Goat
+            </h1>
 
-          <img
-            src={goats}
-            alt="goat"
-            className="size-180 object-contain mx-auto"
-          />
+            <img
+              src={goats}
+              alt="goat"
+              className=" object-contain mx-auto "
+            />
+          </div>
 
-          <h1 className="text-lg text-green-600 font-bold py-10">Boar Goat</h1>
+          <div className='space-y-5'>
+            <h1 className="text-lg text-green-600 font-bold ">Boar Goat</h1>
 
-          <img
-            src={White}
-            alt="goat"
-            className="size-180 object-contain mx-auto"
-          />
+            <img
+              src={White}
+              alt="goat"
+              className=" object-contain mx-auto"
+            />
+          </div>
         </div>
       </div>
     </>

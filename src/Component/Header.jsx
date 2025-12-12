@@ -3,16 +3,16 @@ import Logo from '../assets/Logo.jpg'
 const Header = () => {
   return (
     <>
-      <header className="mb-10  ">
-        <div className="pt-5   ">
-          <img src={Logo} alt="" className="mx-auto" />
+      <header className="mb-10 ">
+        <div className="pt-5 bg-lime-900 p-4 pb-10">
+          <img src={Logo} alt="" className="mx-auto bg-black"  />
         </div>
 
-        <div className="text-left space-y-10 shadow-md p-6 md:p-10 mt-6 border-t-10 border-lime-700   rounded-lg">
+        <div className=" space-y-10 shadow-md bg={} md:p-10 mt-2 rounded-lg">
           <h1 className="text-3xl md:text-4xl font-bold uppercase md:text-center">
             Olam Nigeria Permission Registration
           </h1>
-          <p className="text-md font-bold text-gray-700   ">
+          <p className="text-md font-bold text-gray-700">
             (A) Please take note that you need to apply for this before placing
             your orders, you will need to apply for the purchase permit order
             that will grant your access for purchase & assessment.
