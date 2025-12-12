@@ -1,7 +1,7 @@
 import photo from '../assets/photo_2025-12-11_09-41-11.jpg';
 import Photo from '../assets/Photo.jpg';
 import goats from '../assets/goats.jpg';
-import White from '../assets/White.jpg';
+import white from '../assets/white.jpg';
 import DeliveryTruck from './DeliveryTruck';
 
 function Chicken() {
@@ -77,7 +77,7 @@ function Chicken() {
             <h1 className="text-lg text-green-600 font-bold ">Boar Goat</h1>
 
             <img
-              src={White}
+              src={white}
               alt="goat"
               className=" object-contain mx-auto"
             />
