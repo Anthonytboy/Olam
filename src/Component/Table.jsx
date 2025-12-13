@@ -14,9 +14,9 @@ const Table = () => {
 
       <Poultry />
 
-      <Chicken />
-
       <PriceAccordion />
+
+      <Chicken />
     </>
   );
 };

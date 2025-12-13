@@ -2,7 +2,7 @@ import React from 'react';
 
 const Introduction = () => {
   return (
-    <div className=" space-y-10 shadow-lg p-5 my-5 rounded-xl shadow-gray-400">
+    <div className=" space-y-10 shadow-lg p-5 my-3 rounded-xl bg-lime-900 text-white shadow-gray-400">
       <p className="font-medium">
         <span className="font-bold text-xl">OLAM NIGERIA LIMITED</span>, We
         manufacture and distribute packaged food products to African markets,
@@ -27,7 +27,7 @@ const Introduction = () => {
 
         <p className="font-medium text-md">
           Please take note, <br /> The required fee for this operation, is
-          ₦,780,780 for Major distributorship Registration
+          ₦780,780 for Major distributorship Registration
         </p>
         <p className="font-medium text-md">
           {' '}

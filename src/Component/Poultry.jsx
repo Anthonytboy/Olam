@@ -51,9 +51,9 @@ function Poultry() {
   return (
     <>
     <div className="p-5 border rounded-lg shadow-md overflow-x-auto">
-      <table className="w-full border-collapse text-sm text-left text-gray-700">
+      <table className="w-full border-collapse text-sm text-left text-white">
         <thead>
-          <tr className="bg-green-900 text-white font-bold border-b rounded-lg">
+          <tr className="bg-lime-900 text-white font-bold border-b rounded-lg">
             <th className="px-4 py-3">FEED TYPE</th>
             <th className="px-4 py-3">DESCRIPTION</th>
             <th className="px-4 py-3">INCREASE</th>
@@ -67,12 +67,12 @@ function Poultry() {
               {product.sizes.map((size, idx) => (
                 <tr
                   key={idx}
-                  className="border-b border-2 border-gray-500 hover:bg-gray-50 font-bold text-black"
+                  className="border-b border-2 border-gray-500 hover:bg-lime-800 bg-lime-900 font-bold text-white"
                 >
                   {idx === 0 && (
                     <td
                       rowSpan={product.sizes.length}
-                      className="px-4 py-3 font-semibold align-middle bg-green-50"
+                      className="px-4 py-3 font-semibold align-middle bg-lime-900"
                     >
                       {product.name}
                     </td>
@@ -80,9 +80,9 @@ function Poultry() {
 
                   <td className="px-4 py-3">{size}</td>
 
-                  <td className="px-4 py-3 text-black">{product.increase[idx]}</td>
+                  <td className="px-4 py-3 text-white">{product.increase[idx]}</td>
 
-                  <td className="px-4 py-3 text-black">
+                  <td className="px-4 py-3 text-white">
                     ₦{product.prices[idx].toLocaleString()}
                   </td>
                 </tr>

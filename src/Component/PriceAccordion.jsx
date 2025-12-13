@@ -33,7 +33,7 @@ function PriceAccordion() {
     <div className="p-5 border rounded-lg shadow-md overflow-x-auto">
       <table className="w-full border-collapse text-sm text-left text-gray-700">
         <thead>
-          <tr className="bg-green-800 text-white font-bold border-b">
+          <tr className="bg-lime-900 text-white font-bold border-b">
             <th className="px-4 py-3">PRODUCT BRAND</th>
             <th className="px-4 py-3">BAG SIZE</th>
             <th className="px-4 py-3">PRICE (₦)</th>
@@ -46,19 +46,19 @@ function PriceAccordion() {
               {product.sizes.map((size, sizeIndex) => (
                 <tr
                   key={sizeIndex}
-                  className="border-b border-2 hover:bg-gray-50 font-bold"
+                  className="border-b border-2 border-gray-400 hover:bg-lime-800 font-bold bg-lime-900"
                 >
                   {sizeIndex === 0 && (
                     <td
                       rowSpan={product.sizes.length}
-                      className="px-4 py-3 font-semibold align-middle bg-green-50 text-lime-700"
+                      className="px-4 py-3 font-semibold align-middle bg-lime-900 text-white"
                     >
                       {product.name}
                     </td>
                   )}
 
-                  <td className="px-4 py-3 font-bold text-black">{size}</td>
-                  <td className="px-4 py-3 font-bold text-black">
+                  <td className="px-4 py-3 font-bold text-white">{size}</td>
+                  <td className="px-4 py-3 font-bold text-white">
                     ₦{product.prices[sizeIndex].toLocaleString()}
                   </td>
                 </tr>

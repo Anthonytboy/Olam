@@ -37,9 +37,9 @@ function Food() {
   return (
     <>
       <div className="p-5 border rounded-lg shadow-md overflow-x-auto">
-        <table className="w-full border-collapse text-sm text-left text-gray-700">
+        <table className="w-full border-collapse text-sm text-left text-white bg-lime-900">
           <thead>
-            <tr className="bg-green-800 text-white font-bold border-b">
+            <tr className="text-white font-bold border-b">
               <th className="px-4 py-3">BRAND NAME</th>
               <th className="px-4 py-3">BAG SIZE</th>
               <th className="px-4 py-3">NEW PRICE (₦)</th>
@@ -52,18 +52,18 @@ function Food() {
                 {product.sizes.map((size, idx) => (
                   <tr
                     key={idx}
-                    className="border-b border-2 hover:bg-gray-50 font-bold"
+                    className="border-b border-2 hover:bg-lime-800 font-bold"
                   >
                     {idx === 0 && (
                       <td
                         rowSpan={product.sizes.length}
-                        className="px-4 py-3 font-semibold align-middle bg-green-50"
+                        className="px-4 py-3 font-semibold align-middle"
                       >
                         {product.name}
                       </td>
                     )}
-                    <td className="px-4 py-3 text-black">{size}</td>
-                    <td className="px-4 py-3 text-black">
+                    <td className="px-4 py-3 text-white">{size}</td>
+                    <td className="px-4 py-3 text-white">
                       ₦{product.prices[idx].toLocaleString()}
                     </td>
                   </tr>
