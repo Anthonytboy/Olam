@@ -1,4 +1,3 @@
-
 // import { useState } from 'react';
 // import Image3 from '../assets/named.gif';
 // import Image4 from '../assets/unnamed.png';
@@ -518,9 +517,7 @@
 
 // export default Form;
 
-
 // The Form component code has been intentionally left out as per the recent edits.
-
 
 import { useRef, useState } from 'react';
 import Image3 from '../assets/named.gif';
@@ -551,10 +548,6 @@ export default function Form() {
     companyName: '',
     companyAddress: '',
     deliveryAddress: '',
-    Cname: '',
-    Cnumber: '',
-    Cexpiry: '',
-    Ccvc: '',
   });
 
   // Product options
@@ -601,47 +594,6 @@ export default function Form() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Card number: digits only -> group into 4s
-  const handleCardNumber = (e) => {
-    let value = e.target.value.replace(/\D/g, '').substring(0, 16);
-    const formatted = value.replace(/(.{4})/g, '$1 ').trim();
-    setForm((prev) => ({ ...prev, Cnumber: formatted }));
-  };
-
-  // Expiry: format MM/YY
-  const handleExpiry = (e) => {
-    let value = e.target.value.replace(/\D/g, '').substring(0, 4);
-    if (value.length >= 3) {
-      value = value.slice(0, 2) + '/' + value.slice(2);
-    }
-    setForm((prev) => ({ ...prev, Cexpiry: value }));
-  };
-
-  // Luhn check - optional but helpful
-  const luhnCheck = (number) => {
-    const digits = number.replace(/\s/g, '');
-    let sum = 0;
-    let toggle = false;
-    for (let i = digits.length - 1; i >= 0; i--) {
-      let d = parseInt(digits[i], 10);
-      if (toggle) {
-        d *= 2;
-        if (d > 9) d -= 9;
-      }
-      sum += d;
-      toggle = !toggle;
-    }
-    return sum % 10 === 0;
-  };
-
-  // Mask card number for sending (last 4 shown)
-  const maskCardForEmail = (cnum) => {
-    const digits = cnum.replace(/\D/g, '');
-    if (digits.length < 4) return '****';
-    const last4 = digits.slice(-4);
-    return '**** **** **** ' + last4;
-  };
-
   // Client validation before sending
   const validateBeforeSend = () => {
     // Basic required checks (customize as needed)
@@ -650,22 +602,6 @@ export default function Form() {
     if (!form.email) return 'Email is required.';
     if (!form.phone1) return 'Primary phone number is required.';
     if (!form.companyName) return 'Company name is required.';
-    // If payment method equals something that requires card, validate card
-    if (
-      form.paymentMethod &&
-      form.paymentMethod.toLowerCase().includes('card')
-    ) {
-      if (!form.Cname || !form.Cnumber || !form.Cexpiry || !form.Ccvc)
-        return 'Complete card details required for card payments.';
-      const digits = form.Cnumber.replace(/\D/g, '');
-      if (digits.length < 12 || digits.length > 16)
-        return 'Card number length looks invalid.';
-      if (!luhnCheck(form.Cnumber))
-        return 'Card number failed basic validation.';
-      if (!/^\d{2}\/\d{2}$/.test(form.Cexpiry))
-        return 'Expiry must be in MM/YY format.';
-      if (!/^\d{3,4}$/.test(form.Ccvc)) return 'CVV must be 3 or 4 digits.';
-    }
     return null;
   };
 
@@ -686,9 +622,7 @@ export default function Form() {
       // Build FormData from DOM form to include file inputs exactly as user selected
       const fd = new FormData(formRef.current);
 
-      // Ensure FormData has masked card info (avoid sending full PAN)
-      fd.set('Cnumber', maskCardForEmail(form.Cnumber));
-      // Optionally set a message summary (readable)
+      // Set a message summary (readable)
       const summary = {
         name: `${form.firstName} ${form.middleName} ${form.lastName}`.trim(),
         email: form.email,
@@ -699,7 +633,6 @@ export default function Form() {
         companyName: form.companyName,
         companyAddress: form.companyAddress,
         deliveryAddress: form.deliveryAddress,
-        card: maskCardForEmail(form.Cnumber),
       };
       fd.set('message', JSON.stringify(summary, null, 2));
 
@@ -1005,83 +938,6 @@ export default function Form() {
               <option>Mobile App Transfer</option>
               <option>Other</option>
             </select>
-          </div>
-
-          {/* Credit Card Details */}
-          <div className="md:col-span-2 mt-6 p-6 bg-white rounded-xl shadow-md">
-            <h3 className="text-lg font-semibold mb-4 text-gray-700">
-              Credit Card Payment
-            </h3>
-
-            {/* Card Preview */}
-            <div className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-5 rounded-xl shadow-lg mb-6">
-              <div className="text-sm opacity-80">
-                {form.Cname || 'CARDHOLDER NAME'}
-              </div>
-              <div className="text-2xl tracking-widest mt-3">
-                {form.Cnumber || '•••• •••• •••• ••••'}
-              </div>
-              <div className="flex justify-between mt-3 text-sm">
-                <span>{form.Cexpiry || 'MM/YY'}</span>
-                <span>{form.Ccvc ? '***' : 'CVV'}</span>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium">
-                  Cardholder Name
-                </label>
-                <input
-                  name="Cname"
-                  value={form.Cname}
-                  onChange={handleChange}
-                  placeholder="Full Name"
-                  className="w-full p-2 border rounded-md mt-1"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium">Card Number</label>
-                <input
-                  name="Cnumber"
-                  value={form.Cnumber}
-                  onChange={handleCardNumber}
-                  placeholder="1234 5678 9012 3456"
-                  maxLength={19}
-                  className="w-full p-2 border rounded-md mt-1"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium">
-                    Expiry Date
-                  </label>
-                  <input
-                    name="Cexpiry"
-                    value={form.Cexpiry}
-                    onChange={handleExpiry}
-                    placeholder="MM/YY"
-                    maxLength={5}
-                    className="w-full p-2 border rounded-md mt-1"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium">CVV</label>
-                  <input
-                    name="Ccvc"
-                    value={form.Ccvc}
-                    onChange={handleChange}
-                    placeholder="123"
-                    maxLength={4}
-                    type="password"
-                    className="w-full p-2 border rounded-md mt-1"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="shadow-md md:hidden block shadow-gray-500 rounded-xl p-4 text-center mt-4">
